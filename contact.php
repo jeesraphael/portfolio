@@ -20,29 +20,29 @@
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-md-6">
-                <form>
+                <form action="./supports/forms/form-submission.php" method="POST">
                     <!-- Name input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form4Example1">Name</label>
-                        <input type="text" id="form4Example1" class="form-control" />
+                        <input type="text" name="name" id="form4Example1" class="form-control" />
                     </div>
 
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form4Example2">Email address</label>
-                        <input type="email" id="form4Example2" class="form-control" />
+                        <input type="email" name="email" id="form4Example2" class="form-control" />
                     </div>
 
                     <!-- Message input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form4Example3">Message</label>
-                        <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+                        <textarea class="form-control" name="message" id="form4Example3" rows="4"></textarea>
                     </div>
 
 
 
                     <!-- Submit button -->
-                    <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Send</button>
+                    <input data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Send">
                 </form>
             </div>
         </div>
