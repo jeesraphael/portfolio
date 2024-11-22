@@ -1,3 +1,16 @@
+<?php
+include_once "configs/database.php";
+$projectListingQuery="SELECT * FROM projects";
+$projectListingResult=$con->query($projectListingQuery);
+$con->close();
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,24 +27,26 @@
         <h1 class="text-center" id="projects"> Projects</h1>
         <div class="row">
            <?php
-                for ($i=0; $i < 4; $i++) { 
-                   ?>
-                    <div class="col-md-4">
+           while($projects=$projectListingResult->fetch_assoc()){
+            ?>
+                 <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="assets/images/task-tracker-app.png" class="card-img-top" alt="...">
+                            <img src="admin/<?=$projects['project_image'] ?>" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Task Tracker App</h5>
-                                <p class="card-text">A web application for managing daily tasks and to-do lists with priority
-                                    levels and notifications.</p>
+                                <h5 class="card-title"><?=$projects['project_title'] ?></h5>
+                                <p class="card-text"><?=$projects['project_description'] ?></p>
                                 <div class="button text-center">
-                                    <a href="#" class="btn btn-primary">Click to see</a>
+                                    <a href="<?=$projects['project_link'] ?>" class="btn btn-primary">Click to see</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   <?php
-                }
-           ?>
+
+            <?php
+           }
+         ?>
+                   
+                  
         </div>
     </div>
     </div>

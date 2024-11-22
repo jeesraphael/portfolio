@@ -6,8 +6,8 @@ if(isset($_POST["submit"])){
     $message=$_POST["message"];
     $insertQuery="INSERT INTO contact(name,email,message) VALUES('$name','$email','$message')";
     if($con->query($insertQuery)) 
-    header("location:../alerts/success.php");
+        header("location:../alerts/success.php");
     else
-     header("location:../alerts/error-alert.php");
+        header("location:../alerts/error-alert.php");
 
 }

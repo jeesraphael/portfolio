@@ -24,19 +24,19 @@
                     <!-- Name input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form4Example1">Name</label>
-                        <input type="text" name="name" id="form4Example1" class="form-control" />
+                        <input type="text" name="name" id="form4Example1" class="form-control" required/>
                     </div>
 
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form4Example2">Email address</label>
-                        <input type="email" name="email" id="form4Example2" class="form-control" />
+                        <input type="email" name="email" id="form4Example2" class="form-control" required />
                     </div>
 
                     <!-- Message input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <label class="form-label" for="form4Example3">Message</label>
-                        <textarea class="form-control" name="message" id="form4Example3" rows="4"></textarea>
+                        <textarea class="form-control" name="message" id="form4Example3" rows="4" required></textarea>
                     </div>
 
 
