@@ -5,12 +5,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item"> <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> <i class="bi bi-list"></i> </a> </li>
             </ul> <!--end::Start Navbar Links--> <!--begin::End Navbar Links-->
-           
-
             <div id="admin-logout" class="dropdown">
-            <?php if (basename($_SERVER['PHP_SELF'])=="projects.php"){?>
-            <a href="add-projects.php" class=" btn me-3 btn-md btn-success">Add</a>
-            <?php }?>
+                <div class="d-inline me-2">
+                    <?php if (basename($_SERVER['PHP_SELF']) == "projects.php") { ?>
+                        <a href="add-projects.php" class=" btn  btn-md btn-success add">Add</a>
+                    <?php } ?>
+                </div>
                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= ucfirst($_SESSION['name']) ?>
                 </button>
@@ -22,10 +22,10 @@
         </div> <!--end::Container-->
     </nav> <!--end::Header--> <!--begin::Sidebar-->
     <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark"> <!--begin::Sidebar Brand-->
-        <div class="sidebar-brand"> <!--begin::Brand Link--> 
-            <span class="brand-text fw-light"> 
-            <?= ucfirst($_SESSION['name']) ?>
-            </span> <!--end::Brand Link--> 
+        <div class="sidebar-brand"> <!--begin::Brand Link-->
+            <span class="brand-text fw-light">
+                <?= ucfirst($_SESSION['name']) ?>
+            </span> <!--end::Brand Link-->
         </div> <!--end::Sidebar Brand--> <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
             <nav class="mt-2"> <!--begin::Sidebar Menu-->
@@ -43,7 +43,7 @@
 
                             </p>
                         </a></li>
-                    <li class="nav-item"> <a href="projects.php" class="nav-link">  <i class="nav-icon bi bi-pencil-square"></i>
+                    <li class="nav-item"> <a href="projects.php" class="nav-link"> <i class="nav-icon bi bi-pencil-square"></i>
                             <p>
                                 Projects
 
@@ -53,4 +53,3 @@
             </nav>
         </div> <!--end::Sidebar Wrapper-->
     </aside> <!--end::Sidebar--> <!--begin::App Main-->
-   

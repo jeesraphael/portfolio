@@ -7,9 +7,9 @@
 </head>
 
 <body>
-    
+
     <?php include_once 'layout/nav.php'; ?>
-    
+
     <div class="container">
         <h1 class="text-center" id="contact">Contact</h1>
         <div class="row  my-5 d-flex justify-content-center align-items-center">
@@ -20,29 +20,26 @@
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-md-6">
-                <form action="./supports/forms/form-submission.php" method="POST">
+                <form action="" method="POST" id="login-form">
                     <!-- Name input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <label class="form-label" for="form4Example1">Name</label>
-                        <input type="text" name="name" id="form4Example1" class="form-control" required/>
+                        <label class="form-label" for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" />
                     </div>
 
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <label class="form-label" for="form4Example2">Email address</label>
-                        <input type="email" name="email" id="form4Example2" class="form-control" required />
+                        <label class="form-label" for="email">Email address</label>
+                        <input type="email" name="email" id="email" class="form-control" />
                     </div>
 
                     <!-- Message input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <label class="form-label" for="form4Example3">Message</label>
-                        <textarea class="form-control" name="message" id="form4Example3" rows="4" required></textarea>
+                        <label class="form-label" for="message">Message</label>
+                        <textarea class="form-control" name="message" id="message" rows="4"></textarea>
                     </div>
-
-
-
                     <!-- Submit button -->
-                    <input data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Send">
+                    <button class="btn btn-primary btn-block mb-4">Send</button>
                 </form>
             </div>
         </div>
@@ -50,6 +47,70 @@
     <footer>
         <?php include_once 'layout/footer.php'; ?>
     </footer>
+    <!-- using jquery and ajax for form validation and form submission -->
+    <script>
+        $(document).ready(function() {
+            $("#login-form").validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    message: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Enter your name"
+                    },
+                    email: {
+                        required: "Enter your email"
+                    },
+                    message: {
+                        required: "Please enter your notes"
+                    }
+                },
+                submitHandler: function() {
+                    // form.submit();
+                    $.post("supports/forms/form-submission.php", {
+                            name: $('#name').val(),
+                            email: $('#email').val(),
+                            message: $('#message').val()
+                        },
+                        function(data) {
+                           let parsedData = JSON.parse(data);                   
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            if (parsedData.status === 200) {
+
+                                $('#name').val('')
+                                $('#email').val('')
+                                $('#message').val('')
+                            }
+                            Toast.fire({
+                                icon: parsedData.status === 200 ? "success" : "error",
+                                title: parsedData.message
+                            });
+                        });
+                }
+            })
+        })
+    </script>
+
+
 </body>
 
 </html>

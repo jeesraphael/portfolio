@@ -6,6 +6,16 @@ if (!isset($_SESSION['email'])) {
 }
 $selectionQuery = "SELECT * FROM contact";
 $selectionQueryResult = $con->query($selectionQuery);
+
+////for delete
+
+if (isset($_POST['userid'])) {
+    $id = $_POST['userid'];
+    $deleteQuery = "DELETE FROM contact  WHERE id='$id'";
+    if ($con->query($deleteQuery)) {
+        header("location:contacts.php");
+    }
+}
 $con->close();
 ?>
 
@@ -50,11 +60,11 @@ $con->close();
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody  class="align-middle">
+                        <tbody class="align-middle">
 
 
                             <?php
-                            $i=0;
+                            $i = 0;
                             while ($selectionRow = $selectionQueryResult->fetch_assoc()) {
                             ?>
                                 <tr>
@@ -62,9 +72,9 @@ $con->close();
                                     <td><?php echo $selectionRow['name']; ?></td>
                                     <td><?php echo $selectionRow['email']; ?></td>
                                     <td><?php echo $selectionRow['message']; ?></td>
-                                    <td><a onclick="removeUser(<?= $selectionRow['id']?>)" href="javascript:void(0)" class="btn btn-danger">Delete</a></td>
+                                    <td><a onclick="removeUser(<?= $selectionRow['id'] ?>)" href="javascript:void(0)" class="btn btn-danger">Delete</a></td>
                                 </tr>
-                               
+
 
                             <?php
                             }
@@ -85,16 +95,17 @@ $con->close();
     <footer>
         <?php include "layout/footer.php"; ?>
     </footer>
-    <form action="delete.php" method="POST" id="remove-item">
+    <form action="contacts.php" method="POST" id="remove-item">
         <input type="hidden" name="userid" id="userid">
     </form>
     <script>
-        function removeUser(id){
-            if(confirm("Do you want to continue?")){
-                document.getElementById('userid').value=id;
+        function removeUser(id) {
+            if (confirm("Do you want to continue?")) {
+                document.getElementById('userid').value = id;
                 document.getElementById('remove-item').submit();
             }
         }
     </script>
 </body>
+
 </html>

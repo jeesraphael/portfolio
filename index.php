@@ -7,10 +7,10 @@
 </head>
 
 <body>
-    
+
     <?php include_once 'layout/nav.php'; ?>
 
-   <div class="container section-1">
+    <div class="container section-1">
         <div class="row my-5 d-flex justify-content-center align-items-center">
             <div class="col-md-6 g-5 ">
                 <img src="assets/images/pic.jpg" alt="">
